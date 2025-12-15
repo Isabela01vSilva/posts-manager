@@ -1,7 +1,24 @@
-<header class="w-full bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow">
-  <h1 class="text-xl font-semibold">Posts Manager</h1>
+<header class="h-16 border-b bg-white flex items-center justify-between px-6">
+  <h1>Posts Manager</h1>
 
-  <nav class="flex gap-4">
-    <a routerLink="/posts">Posts</a>
+  <nav class="nav">
+    <ul class="nav-list flex items-center gap-6">
+      <li class="nav-item flex items-center gap-2">
+        <a routerLink="/posts" routerLinkActive="active" class="nav-link">
+          Listar Posts
+        </a>
+      </li>
+      <li class="nav-item flex items-center gap-2">
+        <a routerLink="/post/edit" routerLinkActive="active" class="nav-link">
+          Editar Post
+        </a>
+      </li>
+      <li class="nav-item flex items-center gap-2">
+        <a routerLink="/post/1" routerLinkActive="active" class="nav-link">
+          Detalhes do Post
+        </a>
+      </li>
+    </ul>
   </nav>
+
 </header>

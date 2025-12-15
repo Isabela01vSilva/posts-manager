@@ -1,9 +1,11 @@
-<app-header></app-header>
+<div class="min-h-screen flex flex-col">
+  <app-header></app-header>
 
-<main class="content">
-  <div class="container-content">
-    <ng-content></ng-content>
-  </div>
-</main>
+  <main class="flex-1">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <ng-content></ng-content>
+    </div>
+  </main>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</div>

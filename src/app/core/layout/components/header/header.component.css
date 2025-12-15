@@ -1,0 +1,21 @@
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+header h1{
+  margin: 0;
+  padding: 16px;
+  font-size: 20px;
+  color: #1a2840;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #175ea0;
+}
+
+.nav-item {
+  cursor: pointer;
+  gap: 6px;
+}
