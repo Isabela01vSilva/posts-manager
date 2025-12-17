@@ -1,0 +1,31 @@
+<div class="flex items-center gap-2">
+  <button
+    class="p-2 rounded-lg
+           text-blue-600 hover:bg-blue-50
+           transition-colors
+           disabled:text-gray-300
+           disabled:cursor-not-allowed
+           disabled:hover:bg-transparent"
+    (click)="previousPage()"
+    [disabled]="currentPage === 1"
+  >
+    <i class="ph ph-caret-left"></i>
+  </button>
+
+  <span class="text-sm text-gray-500">
+    Página {{ currentPage }} / {{ totalPages }}
+  </span>
+
+  <button
+    class="p-2 rounded-lg
+           text-blue-600 hover:bg-blue-50
+           transition-colors
+           disabled:text-gray-300
+           disabled:cursor-not-allowed
+           disabled:hover:bg-transparent"
+    (click)="nextPage()"
+    [disabled]="currentPage === totalPages"
+  >
+    <i class="ph ph-caret-right"></i>
+  </button>
+</div>
