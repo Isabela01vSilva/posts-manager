@@ -1,0 +1,9 @@
+<button
+  class="flex items-center gap-1 transition cursor-pointer"
+  (click)="toggleSort()"
+  [class.text-blue-600]="isActive"
+  [class.text-gray-400]="!isActive"
+>
+  <i class="ph ph-arrows-down-up text-lg"></i>
+  <span class="text-sm">Ordenar (A-Z)</span>
+</button>
