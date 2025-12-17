@@ -9,5 +9,4 @@ import { LayoutComponent } from "./core/layout/layout.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'posts-manager';
 }

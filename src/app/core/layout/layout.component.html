@@ -1,11 +1,13 @@
-<div class="min-h-screen flex flex-col">
+<div class="min-h-screen flex flex-col gap-6">
   <app-header></app-header>
 
-  <main class="flex-1">
-    <div class="max-w-6xl mx-auto px-4 py-6">
+  <div class="flex justify-center">
+    <div
+      class="w-full max-w-4xl border border-gray-300 p-6 rounded-xl"
+    >
       <ng-content></ng-content>
     </div>
-  </main>
+  </div>
 
   <app-footer></app-footer>
 </div>
