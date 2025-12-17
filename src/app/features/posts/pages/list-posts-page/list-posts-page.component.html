@@ -1,3 +1,29 @@
-<p>list-posts-page works!</p>
+<div class="flex flex-col gap-6">
+  <app-search-input (search)="onSearch($event)"></app-search-input>
 
+  <div class="flex items-center justify-between">
+    <h2 class="text-lg font-semibold text-blue-900">Listagem de posts</h2>
 
+    <div class="flex items-center gap-6">
+      <app-order-button (sortChange)="onSortChange($event)"></app-order-button>
+      <app-pagination
+        [currentPage]="page"
+        [postsPerPage]="postsPerPage"
+        [totalPosts]="filteredPosts.length"
+        (pageChange)="onPageChange($event)"
+      ></app-pagination>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4">
+    @if (filteredPosts.length === 0) {
+    <p class="text-center text-gray-500 mt-6">Post não encontrado</p>
+    } @else {
+    <div class="flex flex-col gap-4">
+      @for (post of displayedPosts; track post.id) {
+      <app-post-card [post]="post"></app-post-card>
+      }
+    </div>
+    }
+  </div>
+</div>
