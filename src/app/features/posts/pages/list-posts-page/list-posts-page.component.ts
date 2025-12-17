@@ -60,7 +60,8 @@ export class ListPostsPageComponent implements OnInit {
     this.filteredPosts = [...this.allPosts];
     if (this.searchQuery) {
       this.filteredPosts = this.filteredPosts.filter((post) =>
-        post.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+        post.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        post.body.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
     if (this.sortOrder === 'asc') {
