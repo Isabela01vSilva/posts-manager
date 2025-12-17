@@ -1,0 +1,36 @@
+<div
+  class="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200"
+>
+  <div
+    class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full text-gray-500"
+  >
+    <i class="ph ph-user text-lg"></i>
+  </div>
+
+  <div class="flex-1 flex flex-col">
+    <div class="flex items-center justify-between">
+      <span class="font-semibold text-gray-800">Nome do usuário</span>
+    </div>
+
+    <p class="text-gray-700 text-sm mt-1">
+      Esse é um comentário estilo rede social. Pode ter várias linhas de texto e
+      emojis.
+    </p>
+
+    <div class="flex items-center gap-3 mt-2 text-gray-500 text-xs">
+      <app-icon-button
+        icon="ph ph-pencil text-sm"
+        text="Editar"
+        color="gap-1 px-2 py-1 rounded hover:bg-blue-50 hover:text-blue-600 transition text-blue-600 text-xs"
+        (clickEvent)="editarPost(1)"
+      ></app-icon-button>
+
+      <app-icon-button
+        icon="ph ph-trash text-sm"
+        text="Excluir"
+        color="gap-1 px-2 py-1 rounded hover:bg-red-50 hover:text-red-600 transition text-red-500 text-xs"
+        (clickEvent)="excluirPost(1)"
+      ></app-icon-button>
+    </div>
+  </div>
+</div>
