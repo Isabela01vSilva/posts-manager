@@ -1,27 +1,40 @@
-<div class="w-full mx-auto rounded-xl border border-gray-200 p-5 shadow-sm hover:border-blue-200 transition ">
-
+<div
+  class="w-full mx-auto rounded-xl border border-gray-200 p-5 shadow-sm hover:border-blue-200 transition"
+>
   <div class="flex items-center justify-between">
-    <h3 class="text-lg font-semibold text-gray-800 mb-0 first-letter:uppercase">{{ post.title }}</h3>
+    <h3 class="text-lg font-semibold text-gray-800 mb-0 first-letter:uppercase">
+      {{ post.title }}
+    </h3>
 
     <div class="flex items-center gap-2">
       <app-icon-button
         icon="ph ph-pencil"
         text="Editar"
         color="hover:bg-blue-50 transition text-blue-600"
-        (clickEvent)="editPost()">
-      ></app-icon-button>
+        (clickEvent)="editPost()"
+      >
+        ></app-icon-button
+      >
 
       <app-icon-button
         icon="ph ph-trash"
         text="Excluir"
         color="hover:bg-red-50 transition text-red-500"
-        (clickEvent)="deletePost()"
+        (clickEvent)="openConfirm()"
       ></app-icon-button>
 
+      <app-confirm-modal
+        [isOpen]="isConfirmOpen"
+        message="Tem certeza que deseja excluir este post?"
+        (confirm)="confirmDelete()"
+        (cancel)="closeConfirm()"
+      ></app-confirm-modal>
     </div>
   </div>
 
-  <p class="text-sm text-gray-500 mb-4 line-clamp-1 max-w-xs first-letter:uppercase">
+  <p
+    class="text-sm text-gray-500 mb-4 line-clamp-1 max-w-xs first-letter:uppercase"
+  >
     {{ post.body }}
   </p>
 
@@ -31,6 +44,7 @@
       color="hover:text-blue-600 transition text-gray-400 text-sm"
       text="Ver detalhes"
       (clickEvent)="viewDetails()"
-      > </app-icon-button>
+    >
+    </app-icon-button>
   </div>
 </div>

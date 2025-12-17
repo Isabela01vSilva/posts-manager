@@ -2,15 +2,17 @@ import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 import { IPost } from '../../../../../../core/models/post.model';
 import { IconButtonComponent } from '../../../../../../shared/components/icon-button/icon-button.component';
+import { ConfirmModalComponent } from "../../../../../../shared/components/confirm-modal/confirm-modal.component";
 
 @Component({
   selector: 'app-post-card',
   standalone: true,
-  imports: [IconButtonComponent],
+  imports: [IconButtonComponent, ConfirmModalComponent],
   templateUrl: './post-card.component.html',
 })
 export class PostCardComponent {
   @Input({ required: true }) post!: IPost;
+  isConfirmOpen = false;
 
   constructor(private router: Router) {}
 
@@ -22,5 +24,19 @@ export class PostCardComponent {
 
   viewDetails() {
     this.router.navigate([`/post/details/${this.post.id}`]);
+  }
+
+  openConfirm() {
+    this.isConfirmOpen = true;
+  }
+
+  closeConfirm() {
+    this.isConfirmOpen = false;
+  }
+
+  confirmDelete() {
+    this.isConfirmOpen = false;
+
+    this.router.navigate(['/posts']);
   }
 }

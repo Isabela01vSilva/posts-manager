@@ -1,0 +1,23 @@
+@if(isOpen){
+<div
+  class="fixed inset-0 flex items-center justify-center bg-black/40 z-50"
+>
+  <div class="bg-white rounded-lg p-6 w-80 shadow-lg">
+    <p class="mb-4 text-gray-700 align-item-center">{{ message }}</p>
+    <div class="flex justify-end gap-2">
+      <button
+        (click)="onCancel()"
+        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+      >
+        Cancelar
+      </button>
+      <button
+        (click)="onConfirm()"
+        class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+      >
+        Confirmar
+      </button>
+    </div>
+  </div>
+</div>
+}
