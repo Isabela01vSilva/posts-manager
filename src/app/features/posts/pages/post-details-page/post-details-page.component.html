@@ -1,1 +1,47 @@
-<p>post-details-page works!</p>
+<div class="flex items-center justify-between mb-8">
+  <app-icon-button
+    icon="ph ph-arrow-left text-lg"
+    text="Voltar"
+    color="text-gray-500 hover:text-blue-600 transition"
+    (clickEvent)="goBackToPosts()"
+  ></app-icon-button>
+
+  <div class="flex items-center gap-4">
+    <app-icon-button
+      icon="ph ph-pencil"
+      text="Editar"
+      color="text-blue-600 hover:bg-blue-50 transition"
+      (clickEvent)="editPost()"
+    ></app-icon-button>
+
+    <app-icon-button
+      icon="ph ph-trash"
+      text="Excluir"
+      color="text-red-500 hover:bg-red-50 transition"
+      (clickEvent)="deletePost()"
+    ></app-icon-button>
+  </div>
+</div>
+
+<div class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+    {{ post.title }}
+  </h2>
+
+  <p class="text-gray-600 text-base leading-relaxed">
+    {{ post.body }}
+  </p>
+</div>
+
+<div class="border-t border-gray-200 pt-8">
+  <h3 class="text-lg font-semibold text-gray-800 mb-4">
+    Comentários
+  </h3>
+
+  <div class="mb-6 gap-3 flex flex-col">
+    <app-post-comment></app-post-comment>
+    <app-post-comment></app-post-comment>
+  </div>
+
+  <app-comment-form></app-comment-form>
+</div>
