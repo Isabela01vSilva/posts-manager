@@ -4,32 +4,42 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 import { IconButtonComponent } from '../../../../shared/components/icon-button/icon-button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPost } from '../../../../core/models/post.model';
-import { ApiService } from '../../../../core/services/api-service';
-import { ConfirmModalComponent } from "../../../../shared/components/confirm-modal/confirm-modal.component";
+import { ConfirmModalComponent } from '../../../../shared/components/confirm-modal/confirm-modal.component';
+import { PostsService } from '../../../../core/services/posts-service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-post-details-page',
-  imports: [PostCommentComponent, CommentFormComponent, IconButtonComponent, ConfirmModalComponent],
+  imports: [
+    PostCommentComponent,
+    CommentFormComponent,
+    IconButtonComponent,
+    ConfirmModalComponent,
+  ],
   templateUrl: './post-details-page.component.html',
 })
 export class PostDetailsPageComponent {
   post!: IPost;
+  selectedPostId!: number;
 
   isConfirmOpen = false;
 
   constructor(
     private route: ActivatedRoute,
-    private api: ApiService,
+    private postsService: PostsService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const postId = this.route.snapshot.paramMap.get('id');
 
-    if (postId) {
-      this.api.get<IPost>(`posts/${postId}`).subscribe((data) => {
-        this.post = data;
-      });
+    if (!postId) return;
+
+    const posts = (await firstValueFrom(this.postsService.loadPosts())) || [];
+    const post = posts.find((p) => p.id === +postId);
+
+    if (post) {
+      this.post = post;
     }
   }
 
@@ -41,7 +51,8 @@ export class PostDetailsPageComponent {
     this.router.navigate(['/posts']);
   }
 
-  openConfirm() {
+  openConfirm(id: number) {
+    this.selectedPostId = id;
     this.isConfirmOpen = true;
   }
 
@@ -49,9 +60,9 @@ export class PostDetailsPageComponent {
     this.isConfirmOpen = false;
   }
 
-  confirmDelete() {
+  async confirmDelete(postId: number) {
     this.isConfirmOpen = false;
-
+    await firstValueFrom(this.postsService.deletePost(postId));
     this.router.navigate(['/posts']);
   }
 }

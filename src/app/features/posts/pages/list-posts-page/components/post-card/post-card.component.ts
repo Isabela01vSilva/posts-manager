@@ -2,7 +2,9 @@ import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 import { IPost } from '../../../../../../core/models/post.model';
 import { IconButtonComponent } from '../../../../../../shared/components/icon-button/icon-button.component';
-import { ConfirmModalComponent } from "../../../../../../shared/components/confirm-modal/confirm-modal.component";
+import { ConfirmModalComponent } from '../../../../../../shared/components/confirm-modal/confirm-modal.component';
+import { firstValueFrom } from 'rxjs';
+import { PostsService } from '../../../../../../core/services/posts-service';
 
 @Component({
   selector: 'app-post-card',
@@ -14,19 +16,20 @@ export class PostCardComponent {
   @Input({ required: true }) post!: IPost;
   isConfirmOpen = false;
 
-  constructor(private router: Router) {}
+  selectedPostId!: number;
+
+  constructor(private router: Router, private postsService: PostsService) {}
 
   editPost() {
     this.router.navigate([`/post/edit/${this.post.id}`]);
   }
 
-  deletePost() {}
-
   viewDetails() {
     this.router.navigate([`/post/details/${this.post.id}`]);
   }
 
-  openConfirm() {
+  openConfirm(id: number) {
+    this.selectedPostId = id;
     this.isConfirmOpen = true;
   }
 
@@ -34,9 +37,9 @@ export class PostCardComponent {
     this.isConfirmOpen = false;
   }
 
-  confirmDelete() {
+  async confirmDelete(postId: number) {
     this.isConfirmOpen = false;
-
+    await firstValueFrom(this.postsService.deletePost(postId));
     this.router.navigate(['/posts']);
   }
 }

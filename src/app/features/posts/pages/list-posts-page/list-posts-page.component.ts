@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { IPost } from '../../../../core/models/post.model';
-import { ApiService } from '../../../../core/services/api-service';
 import { CommonModule } from '@angular/common';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { OrderButtonComponent } from './components/order-button/order-button.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { environment } from '../../../../../environments/environment';
+import { PostsService } from '../../../../core/services/posts-service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-list-posts-page',
@@ -31,10 +32,13 @@ export class ListPostsPageComponent implements OnInit {
   sortOrder: 'asc' | null = null;
   searchQuery = '';
 
-  constructor(private api: ApiService) {}
+  constructor(private postsService: PostsService) {}
 
-  ngOnInit() {
-    this.api.get<IPost[]>('posts').subscribe((posts) => {
+  async ngOnInit() {
+    this.allPosts = (await firstValueFrom(this.postsService.loadPosts())) || [];
+    this.applyFilters();
+
+    this.postsService.getPosts().subscribe(posts => {
       this.allPosts = posts;
       this.applyFilters();
     });

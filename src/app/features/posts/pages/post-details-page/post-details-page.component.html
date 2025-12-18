@@ -18,13 +18,13 @@
       icon="ph ph-trash"
       text="Excluir"
       color="text-red-500 hover:bg-red-50 transition"
-      (clickEvent)="openConfirm()"
+      (clickEvent)="openConfirm(post.id)"
     ></app-icon-button>
 
     <app-confirm-modal
       [isOpen]="isConfirmOpen"
       message="Tem certeza que deseja excluir este post?"
-      (confirm)="confirmDelete()"
+      (confirm)="confirmDelete(selectedPostId)"
       (cancel)="closeConfirm()"
     ></app-confirm-modal>
 
