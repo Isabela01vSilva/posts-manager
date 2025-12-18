@@ -1,59 +1,133 @@
-# PostsManager
+# Projeto Angular – CRUD de Posts e Comentários
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+## Sobre o projeto
 
-## Development server
+Este projeto é uma aplicação web desenvolvida em **Angular** com o objetivo de demonstrar a implementação de um **CRUD completo de posts e comentários**, aplicando boas práticas de arquitetura, organização de código e programação reativa.
 
-To start a local development server, run:
+A aplicação permite **criar, listar, editar e excluir posts**, além de gerenciar comentários associados a cada post.
+
+## Stack utilizada
+
+* **Linguagem**: TypeScript
+* **Framework**: Angular
+* **Estilização**: Tailwind CSS
+* **Programação reativa**: RxJS
+* **Formulários**: Reactive Forms
+* **Comunicação com API**: HttpClient (REST)
+* **API utilizada**: JSONPlaceholder
+
+---
+
+## Próximos passos
+
+- Implementar testes unitários com **Jasmine e Karma**
+- Migrar persistência de dados para **Firebase**
+- Adicionar tratamento global de erros
+- Implementar paginação e otimização de performance
+
+---
+
+## Requisitos
+
+* **Node.js** v22+
+* **Angular CLI** v19+
+* **TypeScript**
+* **Gerenciador de pacotes**: npm
+* **API externa**: JSONPlaceholder (REST)
+* **Navegador**: Compatível com navegadores modernos (testado no Opera)
+
+---
+
+## Passos para rodar o projeto
+
+1. Clone o repositório:
+
+```bash
+https://github.com/Isabela01vSilva/posts-manager.git
+```
+
+2. Acesse a pasta do projeto:
+
+```bash
+cd posts-manager
+```
+
+3. Instale as dependências:
+
+```bash
+npm i
+```
+
+4. Rode a aplicação Angular:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+5. Acesse no navegador:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Decisões e trade-offs
 
-## Building
+### Decisões
 
-To build the project run:
+* Utilização de **RxJS com async pipe**, evitando `subscribe` manual
+* **Services desacoplados** para facilitar manutenção e troca de API
+* Uso de **Tailwind CSS** para agilidade no desenvolvimento
+* Estrutura preparada para **integração futura com Firebase**
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Trade-offs
 
-## Running unit tests
+- Não utilização de **NgRx**, reduzindo a complexidade inicial e facilitando o entendimento do fluxo de dados
+- Utilização de uma **API externa (JSONPlaceholder)** para simular o backend, em vez de um backend próprio
+- Persistência de dados limitada, sem armazenamento offline
+- **Firebase considerado como solução de persistência**, porém não implementado nesta etapa devido a restrições de tempo, ficando planejado como melhoria futura
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+##  Testes
 
-## Running end-to-end tests
+A implementação de testes automatizados está planejada como **etapa futura do projeto**.
 
-For end-to-end (e2e) testing, run:
+### Testes unitários (planejado)
 
-```bash
-ng e2e
-```
+- **Framework de testes**: Jasmine
+- **Test runner**: Karma
+- **Escopo previsto**:
+  - Componentes
+  - Services
+  - Formulários e validações
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Testes manuais (atual)
 
-## Additional Resources
+Atualmente, a aplicação pode ser validada manualmente por meio das seguintes ações:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Criar, editar e excluir posts
+- Criar, editar e excluir comentários
+- Validar o comportamento após recarregar a página
+- Verificar estados de loading e erro
+
+---
+
+##  Deploy
+
+O deploy da aplicação está planejado como um **próximo passo do projeto**.
+
+- **Plataformas consideradas**: Vercel, Firebase Hosting ou Netlify
+- **Ambiente**: Produção
+
+**Link do deploy**:  
+_A ser disponibilizado_
+
+---
+
+##  Autora
+
+**Isabela Silva**
