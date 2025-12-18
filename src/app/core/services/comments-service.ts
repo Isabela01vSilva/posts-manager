@@ -6,6 +6,7 @@ import { IComment } from '../models/comment.model';
 @Injectable({ providedIn: 'root' })
 export class CommentsService {
   private commentsCache$ = new BehaviorSubject<IComment[]>([]);
+  private editingComment$ = new BehaviorSubject<IComment | null>(null);
 
   constructor(private postsService: PostsService) {}
 
@@ -79,5 +80,13 @@ export class CommentsService {
     });
 
     return of(true);
+  }
+
+  setEditingComment(comment: IComment) {
+    this.editingComment$.next(comment);
+  }
+
+  getEditingComment(): Observable<IComment | null> {
+    return this.editingComment$.asObservable();
   }
 }

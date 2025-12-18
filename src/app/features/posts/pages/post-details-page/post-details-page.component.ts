@@ -7,6 +7,8 @@ import { IPost } from '../../../../core/models/post.model';
 import { ConfirmModalComponent } from '../../../../shared/components/confirm-modal/confirm-modal.component';
 import { PostsService } from '../../../../core/services/posts-service';
 import { firstValueFrom } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { CommentsService } from '../../../../core/services/comments-service';
 
 @Component({
   selector: 'app-post-details-page',
@@ -15,6 +17,7 @@ import { firstValueFrom } from 'rxjs';
     CommentFormComponent,
     IconButtonComponent,
     ConfirmModalComponent,
+    CommonModule
   ],
   templateUrl: './post-details-page.component.html',
 })
@@ -27,10 +30,13 @@ export class PostDetailsPageComponent {
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private router: Router
+    private router: Router,
+    private commentsService: CommentsService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.commentsService.initComments();
+
     const postId = this.route.snapshot.paramMap.get('id');
 
     if (!postId) return;

@@ -18,7 +18,7 @@
       icon="ph ph-trash"
       text="Excluir"
       color="text-red-500 hover:bg-red-50 transition"
-      (clickEvent)="openConfirm(post.id)"
+      (clickEvent)="openConfirm(post!.id)"
     ></app-icon-button>
 
     <app-confirm-modal
@@ -27,7 +27,6 @@
       (confirm)="confirmDelete(selectedPostId)"
       (cancel)="closeConfirm()"
     ></app-confirm-modal>
-
   </div>
 </div>
 
@@ -45,9 +44,8 @@
   <h3 class="text-lg font-semibold text-gray-800 mb-4">Comentários</h3>
 
   <div class="mb-6 gap-3 flex flex-col">
-    <app-post-comment></app-post-comment>
-    <app-post-comment></app-post-comment>
+    <app-post-comment [postId]="post.id"></app-post-comment>
   </div>
 
-  <app-comment-form></app-comment-form>
+  <app-comment-form [postId]="post.id"></app-comment-form>
 </div>

@@ -1,23 +1,30 @@
-import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IconButtonComponent } from '../../../../../../shared/components/icon-button/icon-button.component';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { IComment } from '../../../../../../core/models/comment.model';
+import { CommentsService } from '../../../../../../core/services/comments-service';
 
 @Component({
   selector: 'app-post-comment',
-  imports: [IconButtonComponent],
-  templateUrl: './post-comment.component.html'
+  imports: [IconButtonComponent, CommonModule],
+  templateUrl: './post-comment.component.html',
 })
-export class PostCommentComponent {
-  constructor(private router: Router) {}
+export class PostCommentComponent implements OnInit {
+  @Input() postId!: number;
+  comments$!: Observable<IComment[]>;
 
-  editarPost(id: number) {
-    this.router.navigate(['/post/new']);
-  }
-  isModalOpen = false;
-  selectedPostId: number | null = null;
+  constructor(private commentsService: CommentsService) {}
 
-  excluirPost(id: number) {
-
+  ngOnInit(): void {
+    this.comments$ = this.commentsService.getCommentsByPost(this.postId);
   }
 
+  editarPost(comment: IComment) {
+    this.commentsService.setEditingComment(comment);
+  }
+
+  async excluirPost(commentId: number) {
+    await this.commentsService.deleteComment(commentId).toPromise();
+  }
 }
