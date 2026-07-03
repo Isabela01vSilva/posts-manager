@@ -1,8 +1,10 @@
 # Projeto Angular – CRUD de Posts e Comentários
 
+Empresa: Preço Justo
+
 ## Sobre o projeto
 
-Este projeto é uma aplicação web desenvolvida em **Angular** com o objetivo de demonstrar a implementação de um **CRUD completo de posts e comentários**, aplicando boas práticas de arquitetura, organização de código e programação reativa.
+Este projeto é teste de empresa para a criação de uma aplicação web desenvolvida em **Angular** com o objetivo de demonstrar a implementação de um **CRUD completo de posts e comentários**, aplicando boas práticas de arquitetura, organização de código e programação reativa.
 
 A aplicação permite **criar, listar, editar e excluir posts**, além de gerenciar comentários associados a cada post.
 
